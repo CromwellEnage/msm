@@ -22,6 +22,17 @@ project msm
        <library>/boost/serialization//boost_serialization/<link>static
     ;
 
+alias msm_orthogrid_test
+    :
+    :
+        <cxxstd>03
+    ;
+
+alias msm_orthogrid_test
+    :
+    [ run Orthogrid4x5.cpp ]
+    ;
+
 test-suite msm-unit-tests
     :
     [ run Anonymous.cpp ]
@@ -46,5 +57,6 @@ test-suite msm-unit-tests
     [ run SerializeWithHistory.cpp ]
     [ run SerializeSimpleEuml.cpp ]
     [ run TestConstructor.cpp ]
+    msm_orthogrid_test
     ;
 
