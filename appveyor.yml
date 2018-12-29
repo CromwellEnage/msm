@@ -47,7 +47,7 @@ environment:
 
 install:
   - cd ..
-  - git clone -b %APPVEYOR_REPO_BRANCH% https://github.com/boostorg/boost.git boost-root
+  - git clone -b %APPVEYOR_REPO_BRANCH% --depth 1 https://github.com/boostorg/boost.git boost-root
   - cd boost-root
   - git submodule update --init tools/boost_install
   - git submodule update --init libs/headers
@@ -71,13 +71,15 @@ install:
   - git submodule update --init libs/parameter
   - git submodule update --init tools/boostdep
   - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\msm
-  - python tools/boostdep/depinst/depinst.py msm
   - bootstrap
   - b2 headers
 
 build: off
 
 test_script:
-  - cd libs\msm\test
+  - cd libs\config\test
+  - ..\..\..\b2 config_info_travis_install %ARGS%
+  - config_info_travis
+  - cd ..\..\msm\test
   - ..\..\..\b2 -j%NUMBER_OF_PROCESSORS% --hash %ARGS%
   - cd ..\..\..
