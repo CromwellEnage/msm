@@ -128,6 +128,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_std98
@@ -144,6 +145,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_std03
@@ -160,6 +162,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_mingw32
@@ -186,6 +189,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_msvc08
@@ -204,6 +208,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_msvc09
@@ -222,6 +227,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_msvc10
@@ -240,6 +246,7 @@ alias msm_test_orthogrid
         :
         :
         :
+            <define>FUSION_MAX_DEQUE_SIZE=40
             <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
         :
             orthogrid4x5_msvc11
