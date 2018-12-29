@@ -36,12 +36,7 @@ alias msm_tests_requiring_variadic_templates
 
 alias msm_tests_requiring_variadic_templates
     :
-    [ run Orthogrid4x5.cpp
-        :
-        :
-        :
-        [ requires cxx11_variadic_templates ]
-    ]
+    [ run Orthogrid4x5.cpp ]
     ;
 
 test-suite msm-unit-tests

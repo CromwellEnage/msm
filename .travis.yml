@@ -279,15 +279,8 @@ install:
   - git submodule update --init libs/tuple
   - git submodule update --init libs/fusion
   - git submodule update --init libs/parameter
-  - git submodule update --init libs/throw_exception
-  - git submodule update --init libs/type_index
-  - git submodule update --init libs/function
-  - git submodule update --init libs/integer
-  - git submodule update --init libs/iterator
-  - git submodule update --init libs/range
-  - git submodule update --init libs/container_hash
-  - git submodule update --init libs/container
-  - git submodule update --init libs/multi_index
+  - git submodule update --init libs/test
+  - git submodule update --init libs/serialization
   - cp -r $TRAVIS_BUILD_DIR/* libs/msm
   - ./bootstrap.sh
   - ./b2 headers
