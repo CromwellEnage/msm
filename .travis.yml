@@ -270,6 +270,7 @@ install:
   - git submodule update --init libs/mpl
   - git submodule update --init libs/tti
   - git submodule update --init libs/typeof
+  - git submodule update --init libs/ratio
   - git submodule update --init libs/core
   - git submodule update --init libs/assert
   - git submodule update --init libs/detail
@@ -279,6 +280,8 @@ install:
   - git submodule update --init libs/tuple
   - git submodule update --init libs/fusion
   - git submodule update --init libs/parameter
+  - git submodule update --init libs/chrono
+  - git submodule update --init libs/timer
   - git submodule update --init libs/test
   - git submodule update --init libs/serialization
   - cp -r $TRAVIS_BUILD_DIR/* libs/msm
