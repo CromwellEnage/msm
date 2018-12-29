@@ -22,15 +22,26 @@ project msm
        <library>/boost/serialization//boost_serialization/<link>static
     ;
 
-alias msm_orthogrid_test
+alias msm_tests_requiring_variadic_templates
+    :
+    :
+        <cxxstd>98
+    ;
+
+alias msm_tests_requiring_variadic_templates
     :
     :
         <cxxstd>03
     ;
 
-alias msm_orthogrid_test
+alias msm_tests_requiring_variadic_templates
     :
-    [ run Orthogrid4x5.cpp ]
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+        [ requires cxx11_variadic_templates ]
+    ]
     ;
 
 test-suite msm-unit-tests
@@ -57,6 +68,6 @@ test-suite msm-unit-tests
     [ run SerializeWithHistory.cpp ]
     [ run SerializeSimpleEuml.cpp ]
     [ run TestConstructor.cpp ]
-    msm_orthogrid_test
+    msm_tests_requiring_variadic_templates
     ;
 
