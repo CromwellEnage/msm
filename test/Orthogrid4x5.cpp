@@ -115,15 +115,9 @@ namespace test {
 }
 
 #include <boost/msm/back/state_machine.hpp>
-#include <boost/fusion/container/deque/deque_fwd.hpp>
+#include <boost/fusion/container/deque.hpp>
 #include <boost/fusion/adapted/mpl.hpp>
 #include <boost/core/lightweight_test.hpp>
-
-#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
-#include <boost/fusion/container/deque.hpp>
-#else
-#include <boost/fusion/container/deque/detail/cpp03/preprocessed/deque40.hpp>
-#endif
 
 namespace test {
 
@@ -138,15 +132,13 @@ namespace test {
         }
 
         struct transition_table :
-#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
             boost::fusion::deque<
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
                 _row<
                     test::state_room_0_0,
                     test::event_up,
                     test::state_room_3_0
                 >,
-#else
-            boost::fusion::deque40<
 #endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
                 _row<
                     test::state_room_0_0,

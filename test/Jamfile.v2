@@ -124,6 +124,56 @@ alias msm_test_test_constructor
 
 alias msm_test_orthogrid
     :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_std98
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <cxxstd>98
+    ;
+
+alias msm_test_orthogrid
+    :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_std03
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <cxxstd>03
+    ;
+
+alias msm_test_orthogrid
+    :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_mingw32
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <target-os>windows
+        <toolset>gcc
+        <address-model>32
+    ;
+
+alias msm_test_orthogrid
+    :
     :
         <target-os>windows
         <toolset>msvc
@@ -132,7 +182,87 @@ alias msm_test_orthogrid
 
 alias msm_test_orthogrid
     :
-    [ run Orthogrid4x5.cpp ]
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_msvc08
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <target-os>windows
+        <toolset>msvc
+        <toolset-msvc:version>8.0
+    ;
+
+alias msm_test_orthogrid
+    :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_msvc09
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <target-os>windows
+        <toolset>msvc
+        <toolset-msvc:version>9.0
+    ;
+
+alias msm_test_orthogrid
+    :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_msvc10
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <target-os>windows
+        <toolset>msvc
+        <toolset-msvc:version>10.0
+    ;
+
+alias msm_test_orthogrid
+    :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+            <define>BOOST_FUSION_MAX_DEQUE_SIZE=40
+        :
+            orthogrid4x5_msvc11
+        :
+            <preserve-target-tests>off
+    ]
+    :
+        <target-os>windows
+        <toolset>msvc
+        <toolset-msvc:version>11.0
+    ;
+
+alias msm_test_orthogrid
+    :
+    [ run Orthogrid4x5.cpp
+        :
+        :
+        :
+        :
+            orthogrid4x5_default
+        :
+            <preserve-target-tests>off
+    ]
     ;
 
 test-suite msm-unit-tests
