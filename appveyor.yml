@@ -49,9 +49,9 @@ install:
   - cd ..
   - git clone -b %APPVEYOR_REPO_BRANCH% --depth 1 https://github.com/boostorg/boost.git boost-root
   - cd boost-root
+  - git submodule update --init tools/build
   - git submodule update --init tools/boost_install
   - git submodule update --init libs/headers
-  - git submodule update --init tools/build
   - git submodule update --init libs/config
   - git submodule update --init libs/assert
   - git submodule update --init libs/bind
@@ -69,7 +69,6 @@ install:
   - git submodule update --init libs/tuple
   - git submodule update --init libs/fusion
   - git submodule update --init libs/parameter
-  - git submodule update --init tools/boostdep
   - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\msm
   - bootstrap
   - b2 headers
