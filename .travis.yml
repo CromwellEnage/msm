@@ -260,6 +260,22 @@ install:
   - git submodule update --init libs/headers
   - git submodule update --init tools/build
   - git submodule update --init libs/config
+  - git submodule update --init libs/assert
+  - git submodule update --init libs/bind
+  - git submodule update --init libs/core
+  - git submodule update --init libs/preprocessor
+  - git submodule update --init libs/static_assert
+  - git submodule update --init libs/mpl
+  - git submodule update --init libs/type_traits
+  - git submodule update --init libs/tti
+  - git submodule update --init libs/predef
+  - git submodule update --init libs/typeof
+  - git submodule update --init libs/detail
+  - git submodule update --init libs/utility
+  - git submodule update --init libs/move
+  - git submodule update --init libs/tuple
+  - git submodule update --init libs/fusion
+  - git submodule update --init libs/parameter
   - git submodule update --init tools/boostdep
   - cp -r $TRAVIS_BUILD_DIR/* libs/msm
   - python tools/boostdep/depinst/depinst.py msm
@@ -267,7 +283,12 @@ install:
   - ./b2 headers
 
 script:
-  - ./b2 libs/msm/test toolset=$TOOLSET cxxstd=$CXXSTD
+  - |-
+    echo "using $TOOLSET : : $COMPILER ;" > ~/user-config.jam
+  - ./b2 --verbose-test libs/config/test//config_info toolset=$TOOLSET cxxstd=$CXXSTD || true
+  - cd libs/msm/test
+  - ../../../b2 -j`(nproc || sysctl -n hw.ncpu) 2> /dev/null` toolset=$TOOLSET cxxstd=$CXXSTD $CXXSTD_DIALECT
+  - cd ../../..
 
 notifications:
   email:
