@@ -47,43 +47,21 @@ environment:
 
 install:
   - cd ..
-  - git clone -b %APPVEYOR_REPO_BRANCH% --depth 1 https://github.com/boostorg/boost.git boost-root
+  - git clone -b %APPVEYOR_REPO_BRANCH% https://github.com/boostorg/boost.git boost-root
   - cd boost-root
-  - git submodule update --init tools/build
   - git submodule update --init tools/boost_install
   - git submodule update --init libs/headers
+  - git submodule update --init tools/build
   - git submodule update --init libs/config
-  - git submodule update --init libs/predef
-  - git submodule update --init libs/preprocessor
-  - git submodule update --init libs/static_assert
-  - git submodule update --init libs/type_traits
-  - git submodule update --init libs/mpl
-  - git submodule update --init libs/tti
-  - git submodule update --init libs/typeof
-  - git submodule update --init libs/ratio
-  - git submodule update --init libs/core
-  - git submodule update --init libs/assert
-  - git submodule update --init libs/detail
-  - git submodule update --init libs/utility
-  - git submodule update --init libs/bind
-  - git submodule update --init libs/move
-  - git submodule update --init libs/tuple
-  - git submodule update --init libs/fusion
-  - git submodule update --init libs/parameter
-  - git submodule update --init libs/chrono
-  - git submodule update --init libs/timer
-  - git submodule update --init libs/test
-  - git submodule update --init libs/serialization
+  - git submodule update --init tools/boostdep
   - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\msm
+  - python tools/boostdep/depinst/depinst.py msm
   - bootstrap
   - b2 headers
 
 build: off
 
 test_script:
-  - cd libs\config\test
-  - ..\..\..\b2 config_info_travis_install %ARGS%
-  - config_info_travis
-  - cd ..\..\msm\test
+  - cd libs\msm\test
   - ..\..\..\b2 -j%NUMBER_OF_PROCESSORS% --hash %ARGS%
   - cd ..\..\..
