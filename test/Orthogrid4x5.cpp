@@ -132,13 +132,15 @@ namespace test {
         }
 
         struct transition_table :
-            boost::fusion::deque<
 #if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+            boost::fusion::deque<
                 _row<
                     test::state_room_0_0,
                     test::event_up,
                     test::state_room_3_0
                 >,
+#else
+            boost::fusion::deque40<
 #endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
                 _row<
                     test::state_room_0_0,
