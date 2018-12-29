@@ -34,35 +34,35 @@ namespace test {
     class state_room : public boost::msm::front::state<>
     {
         boost::fusion::map<
-            boost::fusion::pair<test::event_up,unsigned int>
-          , boost::fusion::pair<test::event_down,unsigned int>
-          , boost::fusion::pair<test::event_left,unsigned int>
-          , boost::fusion::pair<test::event_right,unsigned int>
+            boost::fusion::pair<test::event_up,unsigned int>,
+            boost::fusion::pair<test::event_down,unsigned int>,
+            boost::fusion::pair<test::event_left,unsigned int>,
+            boost::fusion::pair<test::event_right,unsigned int>
         > entry_count;
         boost::fusion::map<
-            boost::fusion::pair<test::event_up,unsigned int>
-          , boost::fusion::pair<test::event_down,unsigned int>
-          , boost::fusion::pair<test::event_left,unsigned int>
-          , boost::fusion::pair<test::event_right,unsigned int>
+            boost::fusion::pair<test::event_up,unsigned int>,
+            boost::fusion::pair<test::event_down,unsigned int>,
+            boost::fusion::pair<test::event_left,unsigned int>,
+            boost::fusion::pair<test::event_right,unsigned int>
         > exit_count;
 
      public:
         typedef boost::mpl::integral_c<unsigned int,Row> row;
         typedef boost::mpl::integral_c<unsigned int,Column> column;
 
-        state_room()
-          : boost::msm::front::state<>()
-          , entry_count(
-                boost::fusion::make_pair<test::event_up>(0)
-              , boost::fusion::make_pair<test::event_down>(0)
-              , boost::fusion::make_pair<test::event_left>(0)
-              , boost::fusion::make_pair<test::event_right>(0)
-            )
-          , exit_count(
-                boost::fusion::make_pair<test::event_up>(0)
-              , boost::fusion::make_pair<test::event_down>(0)
-              , boost::fusion::make_pair<test::event_left>(0)
-              , boost::fusion::make_pair<test::event_right>(0)
+        state_room() :
+            boost::msm::front::state<>(),
+            entry_count(
+                boost::fusion::make_pair<test::event_up>(0),
+                boost::fusion::make_pair<test::event_down>(0),
+                boost::fusion::make_pair<test::event_left>(0),
+                boost::fusion::make_pair<test::event_right>(0)
+            ),
+            exit_count(
+                boost::fusion::make_pair<test::event_up>(0),
+                boost::fusion::make_pair<test::event_down>(0),
+                boost::fusion::make_pair<test::event_left>(0),
+                boost::fusion::make_pair<test::event_right>(0)
             )
         {
         }
@@ -115,444 +115,484 @@ namespace test {
 }
 
 #include <boost/msm/back/state_machine.hpp>
-#include <boost/fusion/container/deque.hpp>
+#include <boost/fusion/container/deque/deque_fwd.hpp>
 #include <boost/fusion/adapted/mpl.hpp>
 #include <boost/core/lightweight_test.hpp>
 
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+#include <boost/fusion/container/deque.hpp>
+#else
+#include <boost/fusion/container/deque/detail/cpp03/preprocessed/deque40.hpp>
+#endif
+
 namespace test {
 
-    // front-end: define the FSM structure 
-    struct walker_
-      : public boost::msm::front::state_machine_def<test::walker_>
+    struct walker_ :
+        public boost::msm::front::state_machine_def<test::walker_>
     {
         typedef test::state_room_0_0 initial_state;
 
-        walker_()
-          : boost::msm::front::state_machine_def<test::walker_>()
+        walker_() :
+            boost::msm::front::state_machine_def<test::walker_>()
         {
         }
 
-        struct transition_table
-          : boost::fusion::deque<
+        struct transition_table :
+            boost::fusion::deque<
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
                 _row<
-                    test::state_room_0_0
-                  , test::event_up
-                  , test::state_room_3_0
-                >
-              , _row<
-                    test::state_room_0_0
-                  , test::event_down
-                  , test::state_room_1_0
-                >
-              , _row<
-                    test::state_room_0_0
-                  , test::event_left
-                  , test::state_room_0_4
-                >
-              , _row<
-                    test::state_room_0_0
-                  , test::event_right
-                  , test::state_room_0_1
-                >
-              , _row<
-                    test::state_room_0_1
-                  , test::event_up
-                  , test::state_room_3_1
-                >
-              , _row<
-                    test::state_room_0_1
-                  , test::event_down
-                  , test::state_room_1_1
-                >
-              , _row<
-                    test::state_room_0_1
-                  , test::event_left
-                  , test::state_room_0_0
-                >
-              , _row<
-                    test::state_room_0_1
-                  , test::event_right
-                  , test::state_room_0_2
-                >
-              , _row<
-                    test::state_room_0_2
-                  , test::event_up
-                  , test::state_room_3_2
-                >
-              , _row<
-                    test::state_room_0_2
-                  , test::event_down
-                  , test::state_room_1_2
-                >
-              , _row<
-                    test::state_room_0_2
-                  , test::event_left
-                  , test::state_room_0_1
-                >
-              , _row<
-                    test::state_room_0_2
-                  , test::event_right
-                  , test::state_room_0_3
-                >
-              , _row<
-                    test::state_room_0_3
-                  , test::event_up
-                  , test::state_room_3_3
-                >
-              , _row<
-                    test::state_room_0_3
-                  , test::event_down
-                  , test::state_room_1_3
-                >
-              , _row<
-                    test::state_room_0_3
-                  , test::event_left
-                  , test::state_room_0_2
-                >
-              , _row<
-                    test::state_room_0_3
-                  , test::event_right
-                  , test::state_room_0_4
-                >
-              , _row<
-                    test::state_room_0_4
-                  , test::event_up
-                  , test::state_room_3_4
-                >
-              , _row<
-                    test::state_room_0_4
-                  , test::event_down
-                  , test::state_room_1_4
-                >
-              , _row<
-                    test::state_room_0_4
-                  , test::event_left
-                  , test::state_room_0_3
-                >
-              , _row<
-                    test::state_room_0_4
-                  , test::event_right
-                  , test::state_room_0_0
-                >
-              , _row<
-                    test::state_room_1_0
-                  , test::event_up
-                  , test::state_room_0_0
-                >
-              , _row<
-                    test::state_room_1_0
-                  , test::event_down
-                  , test::state_room_2_0
-                >
-              , _row<
-                    test::state_room_1_0
-                  , test::event_left
-                  , test::state_room_1_4
-                >
-              , _row<
-                    test::state_room_1_0
-                  , test::event_right
-                  , test::state_room_1_1
-                >
-              , _row<
-                    test::state_room_1_1
-                  , test::event_up
-                  , test::state_room_0_1
-                >
-              , _row<
-                    test::state_room_1_1
-                  , test::event_down
-                  , test::state_room_2_1
-                >
-              , _row<
-                    test::state_room_1_1
-                  , test::event_left
-                  , test::state_room_1_0
-                >
-              , _row<
-                    test::state_room_1_1
-                  , test::event_right
-                  , test::state_room_1_2
-                >
-              , _row<
-                    test::state_room_1_2
-                  , test::event_up
-                  , test::state_room_0_2
-                >
-              , _row<
-                    test::state_room_1_2
-                  , test::event_down
-                  , test::state_room_2_2
-                >
-              , _row<
-                    test::state_room_1_2
-                  , test::event_left
-                  , test::state_room_1_1
-                >
-              , _row<
-                    test::state_room_1_2
-                  , test::event_right
-                  , test::state_room_1_3
-                >
-              , _row<
-                    test::state_room_1_3
-                  , test::event_up
-                  , test::state_room_0_3
-                >
-              , _row<
-                    test::state_room_1_3
-                  , test::event_down
-                  , test::state_room_2_3
-                >
-              , _row<
-                    test::state_room_1_3
-                  , test::event_left
-                  , test::state_room_1_2
-                >
-              , _row<
-                    test::state_room_1_3
-                  , test::event_right
-                  , test::state_room_1_4
-                >
-              , _row<
-                    test::state_room_1_4
-                  , test::event_up
-                  , test::state_room_0_4
-                >
-              , _row<
-                    test::state_room_1_4
-                  , test::event_down
-                  , test::state_room_2_4
-                >
-              , _row<
-                    test::state_room_1_4
-                  , test::event_left
-                  , test::state_room_1_3
-                >
-              , _row<
-                    test::state_room_1_4
-                  , test::event_right
-                  , test::state_room_1_0
-                >
-              , _row<
-                    test::state_room_2_0
-                  , test::event_up
-                  , test::state_room_1_0
-                >
-              , _row<
-                    test::state_room_2_0
-                  , test::event_down
-                  , test::state_room_3_0
-                >
-              , _row<
-                    test::state_room_2_0
-                  , test::event_left
-                  , test::state_room_2_4
-                >
-              , _row<
-                    test::state_room_2_0
-                  , test::event_right
-                  , test::state_room_2_1
-                >
-              , _row<
-                    test::state_room_2_1
-                  , test::event_up
-                  , test::state_room_1_1
-                >
-              , _row<
-                    test::state_room_2_1
-                  , test::event_down
-                  , test::state_room_3_1
-                >
-              , _row<
-                    test::state_room_2_1
-                  , test::event_left
-                  , test::state_room_2_0
-                >
-              , _row<
-                    test::state_room_2_1
-                  , test::event_right
-                  , test::state_room_2_2
-                >
-              , _row<
-                    test::state_room_2_2
-                  , test::event_up
-                  , test::state_room_1_2
-                >
-              , _row<
-                    test::state_room_2_2
-                  , test::event_down
-                  , test::state_room_3_2
-                >
-              , _row<
-                    test::state_room_2_2
-                  , test::event_left
-                  , test::state_room_2_1
-                >
-              , _row<
-                    test::state_room_2_2
-                  , test::event_right
-                  , test::state_room_2_3
-                >
-              , _row<
-                    test::state_room_2_3
-                  , test::event_up
-                  , test::state_room_1_3
-                >
-              , _row<
-                    test::state_room_2_3
-                  , test::event_down
-                  , test::state_room_3_3
-                >
-              , _row<
-                    test::state_room_2_3
-                  , test::event_left
-                  , test::state_room_2_2
-                >
-              , _row<
-                    test::state_room_2_3
-                  , test::event_right
-                  , test::state_room_2_4
-                >
-              , _row<
-                    test::state_room_2_4
-                  , test::event_up
-                  , test::state_room_1_4
-                >
-              , _row<
-                    test::state_room_2_4
-                  , test::event_down
-                  , test::state_room_3_4
-                >
-              , _row<
-                    test::state_room_2_4
-                  , test::event_left
-                  , test::state_room_2_3
-                >
-              , _row<
-                    test::state_room_2_4
-                  , test::event_right
-                  , test::state_room_2_0
-                >
-              , _row<
+                    test::state_room_0_0,
+                    test::event_up,
                     test::state_room_3_0
-                  , test::event_up
-                  , test::state_room_2_0
-                >
-              , _row<
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_0_0,
+                    test::event_down,
+                    test::state_room_1_0
+                >,
+                _row<
+                    test::state_room_0_0,
+                    test::event_left,
+                    test::state_room_0_4
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_0_0,
+                    test::event_right,
+                    test::state_room_0_1
+                >,
+                _row<
+                    test::state_room_0_1,
+                    test::event_up,
+                    test::state_room_3_1
+                >,
+                _row<
+                    test::state_room_0_1,
+                    test::event_down,
+                    test::state_room_1_1
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_0_1,
+                    test::event_left,
+                    test::state_room_0_0
+                >,
+                _row<
+                    test::state_room_0_1,
+                    test::event_right,
+                    test::state_room_0_2
+                >,
+                _row<
+                    test::state_room_0_2,
+                    test::event_up,
+                    test::state_room_3_2
+                >,
+                _row<
+                    test::state_room_0_2,
+                    test::event_down,
+                    test::state_room_1_2
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_0_2,
+                    test::event_left,
+                    test::state_room_0_1
+                >,
+                _row<
+                    test::state_room_0_2,
+                    test::event_right,
+                    test::state_room_0_3
+                >,
+                _row<
+                    test::state_room_0_3,
+                    test::event_up,
+                    test::state_room_3_3
+                >,
+                _row<
+                    test::state_room_0_3,
+                    test::event_down,
+                    test::state_room_1_3
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_0_3,
+                    test::event_left,
+                    test::state_room_0_2
+                >,
+                _row<
+                    test::state_room_0_3,
+                    test::event_right,
+                    test::state_room_0_4
+                >,
+                _row<
+                    test::state_room_0_4,
+                    test::event_up,
+                    test::state_room_3_4
+                >,
+                _row<
+                    test::state_room_0_4,
+                    test::event_down,
+                    test::state_room_1_4
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_0_4,
+                    test::event_left,
+                    test::state_room_0_3
+                >,
+                _row<
+                    test::state_room_0_4,
+                    test::event_right,
+                    test::state_room_0_0
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_1_0,
+                    test::event_up,
+                    test::state_room_0_0
+                >,
+                _row<
+                    test::state_room_1_0,
+                    test::event_down,
+                    test::state_room_2_0
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_1_0,
+                    test::event_left,
+                    test::state_room_1_4
+                >,
+                _row<
+                    test::state_room_1_0,
+                    test::event_right,
+                    test::state_room_1_1
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_1_1,
+                    test::event_up,
+                    test::state_room_0_1
+                >,
+                _row<
+                    test::state_room_1_1,
+                    test::event_down,
+                    test::state_room_2_1
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_1_1,
+                    test::event_left,
+                    test::state_room_1_0
+                >,
+                _row<
+                    test::state_room_1_1,
+                    test::event_right,
+                    test::state_room_1_2
+                >,
+                _row<
+                    test::state_room_1_2,
+                    test::event_up,
+                    test::state_room_0_2
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_1_2,
+                    test::event_down,
+                    test::state_room_2_2
+                >,
+                _row<
+                    test::state_room_1_2,
+                    test::event_left,
+                    test::state_room_1_1
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_1_2,
+                    test::event_right,
+                    test::state_room_1_3
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_1_3,
+                    test::event_up,
+                    test::state_room_0_3
+                >,
+                _row<
+                    test::state_room_1_3,
+                    test::event_down,
+                    test::state_room_2_3
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_1_3,
+                    test::event_left,
+                    test::state_room_1_2
+                >,
+                _row<
+                    test::state_room_1_3,
+                    test::event_right,
+                    test::state_room_1_4
+                >,
+                _row<
+                    test::state_room_1_4,
+                    test::event_up,
+                    test::state_room_0_4
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_1_4,
+                    test::event_down,
+                    test::state_room_2_4
+                >,
+                _row<
+                    test::state_room_1_4,
+                    test::event_left,
+                    test::state_room_1_3
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_1_4,
+                    test::event_right,
+                    test::state_room_1_0
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_2_0,
+                    test::event_up,
+                    test::state_room_1_0
+                >,
+                _row<
+                    test::state_room_2_0,
+                    test::event_down,
                     test::state_room_3_0
-                  , test::event_down
-                  , test::state_room_0_0
-                >
-              , _row<
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_2_0,
+                    test::event_left,
+                    test::state_room_2_4
+                >,
+                _row<
+                    test::state_room_2_0,
+                    test::event_right,
+                    test::state_room_2_1
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_2_1,
+                    test::event_up,
+                    test::state_room_1_1
+                >,
+                _row<
+                    test::state_room_2_1,
+                    test::event_down,
+                    test::state_room_3_1
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_2_1,
+                    test::event_left,
+                    test::state_room_2_0
+                >,
+                _row<
+                    test::state_room_2_1,
+                    test::event_right,
+                    test::state_room_2_2
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_2_2,
+                    test::event_up,
+                    test::state_room_1_2
+                >,
+                _row<
+                    test::state_room_2_2,
+                    test::event_down,
+                    test::state_room_3_2
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_2_2,
+                    test::event_left,
+                    test::state_room_2_1
+                >,
+                _row<
+                    test::state_room_2_2,
+                    test::event_right,
+                    test::state_room_2_3
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_2_3,
+                    test::event_up,
+                    test::state_room_1_3
+                >,
+                _row<
+                    test::state_room_2_3,
+                    test::event_down,
+                    test::state_room_3_3
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_2_3,
+                    test::event_left,
+                    test::state_room_2_2
+                >,
+                _row<
+                    test::state_room_2_3,
+                    test::event_right,
+                    test::state_room_2_4
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_2_4,
+                    test::event_up,
+                    test::state_room_1_4
+                >,
+                _row<
+                    test::state_room_2_4,
+                    test::event_down,
+                    test::state_room_3_4
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_2_4,
+                    test::event_left,
+                    test::state_room_2_3
+                >,
+                _row<
+                    test::state_room_2_4,
+                    test::event_right,
+                    test::state_room_2_0
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_3_0,
+                    test::event_up,
+                    test::state_room_2_0
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_3_0,
+                    test::event_down,
+                    test::state_room_0_0
+                >,
+                _row<
+                    test::state_room_3_0,
+                    test::event_left,
+                    test::state_room_3_4
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_3_0,
+                    test::event_right,
+                    test::state_room_3_1
+                >,
+                _row<
+                    test::state_room_3_1,
+                    test::event_up,
+                    test::state_room_2_1
+                >,
+                _row<
+                    test::state_room_3_1,
+                    test::event_down,
+                    test::state_room_0_1
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_3_1,
+                    test::event_left,
                     test::state_room_3_0
-                  , test::event_left
-                  , test::state_room_3_4
-                >
-              , _row<
+                >,
+                _row<
+                    test::state_room_3_1,
+                    test::event_right,
+                    test::state_room_3_2
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_3_2,
+                    test::event_up,
+                    test::state_room_2_2
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_3_2,
+                    test::event_down,
+                    test::state_room_0_2
+                >,
+                _row<
+                    test::state_room_3_2,
+                    test::event_left,
+                    test::state_room_3_1
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_3_2,
+                    test::event_right,
+                    test::state_room_3_3
+                >,
+                _row<
+                    test::state_room_3_3,
+                    test::event_up,
+                    test::state_room_2_3
+                >,
+                _row<
+                    test::state_room_3_3,
+                    test::event_down,
+                    test::state_room_0_3
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_3_3,
+                    test::event_left,
+                    test::state_room_3_2
+                >,
+                _row<
+                    test::state_room_3_3,
+                    test::event_right,
+                    test::state_room_3_4
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_3_4,
+                    test::event_up,
+                    test::state_room_2_4
+                >,
+#if defined(BOOST_FUSION_HAS_VARIADIC_DEQUE)
+                _row<
+                    test::state_room_3_4,
+                    test::event_down,
+                    test::state_room_0_4
+                >,
+                _row<
+                    test::state_room_3_4,
+                    test::event_left,
+                    test::state_room_3_3
+                >,
+#endif  // BOOST_FUSION_HAS_VARIADIC_DEQUE
+                _row<
+                    test::state_room_3_4,
+                    test::event_right,
                     test::state_room_3_0
-                  , test::event_right
-                  , test::state_room_3_1
-                >
-              , _row<
-                    test::state_room_3_1
-                  , test::event_up
-                  , test::state_room_2_1
-                >
-              , _row<
-                    test::state_room_3_1
-                  , test::event_down
-                  , test::state_room_0_1
-                >
-              , _row<
-                    test::state_room_3_1
-                  , test::event_left
-                  , test::state_room_3_0
-                >
-              , _row<
-                    test::state_room_3_1
-                  , test::event_right
-                  , test::state_room_3_2
-                >
-              , _row<
-                    test::state_room_3_2
-                  , test::event_up
-                  , test::state_room_2_2
-                >
-              , _row<
-                    test::state_room_3_2
-                  , test::event_down
-                  , test::state_room_0_2
-                >
-              , _row<
-                    test::state_room_3_2
-                  , test::event_left
-                  , test::state_room_3_1
-                >
-              , _row<
-                    test::state_room_3_2
-                  , test::event_right
-                  , test::state_room_3_3
-                >
-              , _row<
-                    test::state_room_3_3
-                  , test::event_up
-                  , test::state_room_2_3
-                >
-              , _row<
-                    test::state_room_3_3
-                  , test::event_down
-                  , test::state_room_0_3
-                >
-              , _row<
-                    test::state_room_3_3
-                  , test::event_left
-                  , test::state_room_3_2
-                >
-              , _row<
-                    test::state_room_3_3
-                  , test::event_right
-                  , test::state_room_3_4
-                >
-              , _row<
-                    test::state_room_3_4
-                  , test::event_up
-                  , test::state_room_2_4
-                >
-              , _row<
-                    test::state_room_3_4
-                  , test::event_down
-                  , test::state_room_0_4
-                >
-              , _row<
-                    test::state_room_3_4
-                  , test::event_left
-                  , test::state_room_3_3
-                >
-              , _row<
-                    test::state_room_3_4
-                  , test::event_right
-                  , test::state_room_3_0
                 >
             >
         {
         };
 
-        // Replaces the default no-transition response.
         template <typename FSM, typename Event>
         void no_transition(Event const&, FSM&, int)
         {
             BOOST_TEST(false);
         }
 
-        // no-op
         template <typename Event, typename FSM>
         void on_entry(Event const&, FSM& fsm) 
         {
         }
     };
 
-    // Pick a back-end
     typedef boost::msm::back::state_machine<test::walker_> walker;
 }
 
