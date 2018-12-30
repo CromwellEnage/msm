@@ -105,7 +105,7 @@ alias msm_test_test_constructor
     :
     :
         <toolset>gcc
-        <toolset-gcc:version>4.4
+        <toolset-gcc:version>4.4.7
     ;
 
 alias msm_test_test_constructor
