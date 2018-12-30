@@ -104,6 +104,21 @@ alias msm_tests_serialize
 alias msm_test_test_constructor
     :
     :
+        <toolset>gcc
+        <toolset-gcc:version>4.4
+    ;
+
+alias msm_test_test_constructor
+    :
+    :
+        <target-os>windows
+        <toolset>msvc
+        <toolset-msvc:version>7.1
+    ;
+
+alias msm_test_test_constructor
+    :
+    :
         <target-os>windows
         <toolset>msvc
         <toolset-msvc:version>8.0
@@ -183,11 +198,11 @@ alias msm_test_orthogrid
     :
         <target-os>windows
         <toolset>msvc
-        <toolset-msvc:version>7.1
+#        <toolset-msvc:version>7.1
     ;
 
-alias msm_test_orthogrid
-    :
+#alias msm_test_orthogrid
+#    :
 #    [ run Orthogrid4x5.cpp
 #        :
 #        :
@@ -200,14 +215,14 @@ alias msm_test_orthogrid
 #        :
 #            <preserve-target-tests>off
 #    ]
-    :
-        <target-os>windows
-        <toolset>msvc
-        <toolset-msvc:version>8.0
-    ;
+#    :
+#        <target-os>windows
+#        <toolset>msvc
+#        <toolset-msvc:version>8.0
+#    ;
 
-alias msm_test_orthogrid
-    :
+#alias msm_test_orthogrid
+#    :
 #    [ run Orthogrid4x5.cpp
 #        :
 #        :
@@ -220,14 +235,14 @@ alias msm_test_orthogrid
 #        :
 #            <preserve-target-tests>off
 #    ]
-    :
-        <target-os>windows
-        <toolset>msvc
-        <toolset-msvc:version>9.0
-    ;
+#    :
+#        <target-os>windows
+#        <toolset>msvc
+#        <toolset-msvc:version>9.0
+#    ;
 
-alias msm_test_orthogrid
-    :
+#alias msm_test_orthogrid
+#    :
 #    [ run Orthogrid4x5.cpp
 #        :
 #        :
@@ -240,14 +255,14 @@ alias msm_test_orthogrid
 #        :
 #            <preserve-target-tests>off
 #    ]
-    :
-        <target-os>windows
-        <toolset>msvc
-        <toolset-msvc:version>10.0
-    ;
+#    :
+#        <target-os>windows
+#        <toolset>msvc
+#        <toolset-msvc:version>10.0
+#    ;
 
-alias msm_test_orthogrid
-    :
+#alias msm_test_orthogrid
+#    :
 #    [ run Orthogrid4x5.cpp
 #        :
 #        :
@@ -260,11 +275,31 @@ alias msm_test_orthogrid
 #        :
 #            <preserve-target-tests>off
 #    ]
-    :
-        <target-os>windows
-        <toolset>msvc
-        <toolset-msvc:version>11.0
-    ;
+#    :
+#        <target-os>windows
+#        <toolset>msvc
+#        <toolset-msvc:version>11.0
+#    ;
+
+#alias msm_test_orthogrid
+#    :
+#    [ run Orthogrid4x5.cpp
+#        :
+#        :
+#        :
+#            <define>FUSION_MAX_DEQUE_SIZE=40
+#            <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
+#            <define>BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
+#        :
+#            orthogrid4x5_msvc12
+#        :
+#            <preserve-target-tests>off
+#    ]
+#    :
+#        <target-os>windows
+#        <toolset>msvc
+#        <toolset-msvc:version>12.0
+#    ;
 
 alias msm_test_orthogrid
     :
