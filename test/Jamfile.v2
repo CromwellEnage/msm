@@ -183,6 +183,24 @@ alias msm_test_orthogrid
 #            <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
 #            <define>BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
 #        :
+#            orthogrid4x5_std0x
+#        :
+#            <preserve-target-tests>off
+#    ]
+    :
+        <cxxstd>0x
+    ;
+
+alias msm_test_orthogrid
+    :
+#    [ run Orthogrid4x5.cpp
+#        :
+#        :
+#        :
+#            <define>FUSION_MAX_DEQUE_SIZE=40
+#            <define>BOOST_MPL_LIMIT_VECTOR_SIZE=40
+#            <define>BOOST_MPL_CFG_NO_PREPROCESSED_HEADERS
+#        :
 #            orthogrid4x5_mingw32
 #        :
 #            <preserve-target-tests>off
